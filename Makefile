@@ -55,7 +55,7 @@ bin/%.o: src/%.c
 #################
 # TEST FUNCTIONS 
 #################
-test: directories test_green_bessel_old test_green_bessel test_nr_random test_common_util test_vector_util test_root_finder test_medium test_ms_matrix test_complex_map test_config_io test_fitting_model test_classical_diffusion test_square_well_resonances test_eigenstate_util test_plot_functions
+test: directories test_green_bessel_old test_green_bessel test_nr_random test_common_util test_vector_util test_root_finder test_medium test_ms_matrix test_complex_map test_config_io test_classical_diffusion test_plot_functions
 
 test_green_bessel_old: $(BINCOREDIR)/green_bessel.o $(BINTESTDIR)/test_green_bessel_old.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
@@ -78,10 +78,10 @@ test_vector_util: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $
 test_root_finder: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $(BINCOREDIR)/complex_vector_util.o $(BINCOREDIR)/domain_util.o $(BINCOREDIR)/root_finder.o $(BINTESTDIR)/assertion.o $(BINTESTDIR)/test_root_finder.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
 
-test_medium: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $(BINCOREDIR)/nru_random.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/medium_util.o $(BINTESTDIR)/test_medium.o
+test_medium: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $(BINCOREDIR)/nru_random.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/scattering_model_util.o $(BINCOREDIR)/medium_util.o $(BINTESTDIR)/test_medium.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
 
-test_ms_matrix: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $(BINCOREDIR)/complex_vector_util.o $(BINCOREDIR)/nru_random.o $(BINCOREDIR)/medium_util.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/ms_matrix_util.o $(BINTESTDIR)/assertion.o $(BINTESTDIR)/test_ms_matrix.o
+test_ms_matrix: $(BINLST) $(BINTESTDIR)/assertion.o $(BINTESTDIR)/test_ms_matrix.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
 
 test_complex_map: $(BINLST) $(BINTESTDIR)/test_complex_map.o
@@ -90,16 +90,7 @@ test_complex_map: $(BINLST) $(BINTESTDIR)/test_complex_map.o
 test_config_io: $(BINLST) $(BINTESTDIR)/test_config_io.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
 
-test_fitting_model: $(BINCOREDIR)/fitting_model_util.o $(BINTESTDIR)/test_fitting_model.o
-	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
-
-test_classical_diffusion: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/classical_diffusion_util.o $(BINTESTDIR)/test_classical_diffusion.o
-	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
-
-test_square_well_resonances: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/domain_util.o $(BINCOREDIR)/nru_random.o $(BINCOREDIR)/medium_util.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/square_well_resonances.o $(BINTESTDIR)/test_square_well_resonances.o
-	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
-
-test_eigenstate_util: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/nru_random.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/medium_util.o $(BINCOREDIR)/eigenstate_util.o  $(BINTESTDIR)/test_eigenstate_util.o
+test_classical_diffusion: $(BINCOREDIR)/common_util.o $(BINCOREDIR)/real_vector_util.o $(BINCOREDIR)/green_bessel.o $(BINCOREDIR)/classical_diffusion_util.o $(BINTESTDIR)/test_classical_diffusion.o
 	$(CC) $(CFLAG) $(INCL) $^ $(LDFLAG) -o $@
 
 test_plot_functions: $(BINLST) $(BINTESTDIR)/test_plot_functions.o

@@ -16,6 +16,7 @@ double helmholtz_series(int d, double k, double r);
 double dr_helmholtz(int d, double k, double r);
 double dk_helmholtz(int d, double k, double r);
 double dkdr_helmholtz(int d, double k, double r);
+void diffusion_solve_v1(int d, double radius, double nsigma, double* beta, double* kappa, int* conv, double* betahyp, double* kappahyp, int* convhyp);
 int diffusion_result_plot_v1(int d, double radius, double nsigma, char* str);
 int diffusion_result_plot_v2(int d, double radius, double nsigma, char* str);
 

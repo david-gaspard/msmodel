@@ -30,15 +30,16 @@ void test_helmholtz() {
 	printf("[INFO] D_k D_r P(d,k,r) = %.16g.\n", dkdrP);
 }
 
-
 void test_diffusion_solve() {
 	int d = 3;
 	double radius = 7.81593;
 	double nsigma = 0.349025;
 	double beta, kappa, betahyp, kappahyp;
-	diffusion_solve(d, radius, nsigma, &beta, &kappa, &betahyp, &kappahyp);
-	printf("[INFO] Std sol:\tbeta  = %.16g\tkappa  = %.16g\n", beta, kappa);
-	printf("[INFO] Hyp sol:\tbetah = %.16g\tkappah = %.16g\n", betahyp, kappahyp);
+	int conv, convhyp;
+	//diffusion_solve(d, radius, nsigma, &beta, &kappa, &betahyp, &kappahyp);
+	diffusion_solve_v1(d, radius, nsigma, &beta, &kappa, &conv, &betahyp, &kappahyp, &convhyp);
+	printf("[INFO] Std sol:\tbeta  = %.16g\tkappa  = %.16g\t(conv  = %d)\n", beta, kappa, conv);
+	printf("[INFO] Hyp sol:\tbetah = %.16g\tkappah = %.16g\t(convh = %d)\n", betahyp, kappahyp, convhyp);
 }
 
 int main(int argc, char** argv) {

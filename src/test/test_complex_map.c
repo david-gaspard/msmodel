@@ -68,9 +68,10 @@ int main(int argc, char** argv) {
 	
 	print_complexmap(cmap, 5);
 	
-	double minreal, maxreal;	
-	find_min_max_real(cmap, &minreal, &maxreal);
-	printf("[TEST] Mininum real = %f. Maximum real = %f\n", minreal, maxreal);
+	double minreal, maxreal;
+	find_min_max_cmap(cmap, 1);
+	
+	printf("[TEST] Mininum real = %f. Maximum real = %f\n", cmap->colrule->hmin, cmap->colrule->hmax);
 	
 	//Test bilinear interpolation:
 	z = -0.2 + 0.5*I;

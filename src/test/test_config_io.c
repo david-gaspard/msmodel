@@ -25,14 +25,15 @@ int main(int argc, char** argv) {
 		replace_ext(argv[1], "", stripfname);
 		sprintf(fname, "test_%s", stripfname);
 		int i1, i2;
+		int lmax = -1;  //By default, no partial wave is considered for the computation resonances of the effective square well approx (cmap).
 		for (i1 = 0; i1 < conf->ncmap; i1++) {
 			print_param_complexmap(conf->cmap+i1, 1);
 			print_complexmap(conf->cmap, 5);
-			export_tikz_map(conf->cmap+i1, i1, fname);
+			export_tikz_cmap(conf->cmap+i1, conf->med, lmax, i1, fname);
 		}
 		for (i2 = 0; i2 < conf->nchist; i2++) {
-			print_param_chistogram(conf->chist+i2, 1);
-			export_tikz_chistogram(conf->chist+i2, i1+i2, fname);
+			print_param_chist(conf->chist+i2);
+			export_tikz_chistogram(conf->chist+i2, conf->med, i1+i2, fname);
 		}
 		printf("[INFO] Now trying to free data...\n"); fflush(stdout);
 		del_config(conf);

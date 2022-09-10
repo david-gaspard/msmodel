@@ -19,6 +19,28 @@
 #define TOLER  1.e-12  //Global tolerance threshold on the resulting values used for test.
 
 /**
+ * Displays the volume and surface area of the unit d-ball for the first dimensions.
+ */
+void show_uball_volsurf(int dmax) {
+	int d;
+	printf("[INFO] Volume  = {");
+	for (d = 0; d <= dmax; d++) {
+		printf("%d: %g", d, uball_volume(d));
+		if (d != dmax) {
+			printf(",\t");
+		}
+	}
+	printf("},\n[INFO] Surface = {");
+	for (d = 0; d <= dmax; d++) {
+		printf("%d: %g", d, uball_surface(d));
+		if (d != dmax) {
+			printf(",\t");
+		}
+	}
+	printf("}.\n");
+}
+
+/**
  * Returns the relative error on the computed K_nu(z) from arguments on the format [nu, Re(z), Im(z), Re(K_nu(z)), Im(K_nu(z))].
  */
 double bessel_k_error(double* arg) {
@@ -180,6 +202,8 @@ void test_function(const char* funcname, double (*funcerr)(double*), int ntest, 
  */
 int main(int argc, char** argv) {
 	
+	show_uball_volsurf(7);
+	
 	int ntest;
 	
 	ntest = sizeof(BESSEL_K_DATA)/sizeof(BESSEL_K_DATA[0]);
@@ -202,8 +226,6 @@ int main(int argc, char** argv) {
 	
 	ntest = sizeof(BESSEL_K_RATIO_DATA)/sizeof(BESSEL_K_RATIO_DATA[0]);
 	test_function("bessel_k_ratio()", bessel_k_ratio_error, ntest, BESSEL_K_RATIO_DATA);
-	
-	test_hypergeom_1f1_series();
 	
 	return 0;
 }

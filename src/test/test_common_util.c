@@ -16,28 +16,6 @@
 #include "common_util.h"   /* Import the General Purpose Functions */
 
 /**
- * Displays the volume and surface area of the unit d-ball for the first dimensions.
- */
-void show_uball_volsurf(int dmax) {
-	int d;
-	printf("[INFO] Volume  = {");
-	for (d = 0; d <= dmax; d++) {
-		printf("%d: %g", d, uball_volume(d));
-		if (d != dmax) {
-			printf(",\t");
-		}
-	}
-	printf("},\n[INFO] Surface = {");
-	for (d = 0; d <= dmax; d++) {
-		printf("%d: %g", d, uball_surface(d));
-		if (d != dmax) {
-			printf(",\t");
-		}
-	}
-	printf("}.\n");
-}
-
-/**
  * Test the replace_ext() function with some special cases.
  */
 void test_replace_ext(void) {
@@ -124,8 +102,6 @@ int mkpath(const char* path, mode_t mode) {
 }
 
 int main(int argc, char** argv) {
-	
-	show_uball_volsurf(7);
 	
 	//mkpath("yet/another/test/withmkpath/file.txt", 0700);
 	//ensure_path("another/test/withensurepath/file.txt");

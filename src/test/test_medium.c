@@ -86,7 +86,7 @@ void test_medium_invf(Medium* med) {
 }
 
 int main(int argc, char** argv) {
-		
+	
 	Medium* med = (Medium*)calloc(1, sizeof(Medium));
 	
 	//2D case:

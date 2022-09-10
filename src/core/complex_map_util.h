@@ -16,6 +16,7 @@
 
 void init_complexmap(ComplexMap* cmap, int nx, int ny, double xmin, double xmax, double ymin, double ymax, int nseed, const char* title);
 void del_complexmap(ComplexMap* cmap);
+void find_min_max_cmap(ComplexMap* cmap, int verbose);
 dcomplex get_arg_cmap(ComplexMap* cmap, int l);
 dcomplex get_value_cmap(ComplexMap* cmap, int ix, int iy);
 void set_value_cmap(ComplexMap* cmap, int ix, int iy, dcomplex val);
