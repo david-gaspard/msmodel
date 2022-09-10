@@ -8,6 +8,7 @@ msmain
 msplot
 test_*
 !test_*.c
+!test_*.h
 
 ## Object files ##
 *.o
