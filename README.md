@@ -24,7 +24,7 @@
 
 MSModel is a program written in C for solving multiple-scattering problems of scalar waves in disordered media made of point scatterers.
 It was developed by David Gaspard for his doctoral thesis mainly between July 2020 and April 2021.
-This programs implements the Foldy-Lax model, which assumes that the scatterings of the wave with the point-like scatterers involve only spherical waves ($s$-waves).
+This programs implements the Foldy-Lax model, which assumes that the scatterings of the wave with the point-like scatterers involve only spherical waves, i.e., $s$-waves.
 This model has the advantage that it can be generalized to an arbitrary number of spatial dimensions: $d=1,2,3,4,\ldots$.
 In this model, one considers $N$ point scatterers located at positions <tspan>$\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N$</tspan> and a quantum spinless particle of wavenumber $k=||\mathbf{k}||$.
 The wavefunction of the particle can be expressed as
@@ -41,7 +41,7 @@ The notation $\mathsf{M}(k)$ stands for the multiple-scattering matrix, whose el
 
 <p>$$M_{ij}(k) = F(k)^{-1} \delta_{ij} - G^+(k,\mathbf{x}_i\mid\mathbf{x}_j) (1-\delta_{ij})$$</p>
 
-where $F(k)$ is the scattering amplitude.
+where $F(k)$ is the scattering amplitude corresponding to the individual scatterers.
 There are special values of $k\in\mathbb{C}$ for which the Foldy-Lax system has no solution.
 These values correspond to _resonances_ of the system, and are given by the determinantal equation:
 
@@ -165,8 +165,7 @@ The options are the following:
 * `ratio`: Aspect ratio, or elongation, of the medium. The deformation preserves the unitary density of the medium. The value `ratio=1` corresponds to the absence of deformation. Used to increase the upper limit on scatterer-scatterer distances.
 
 ### complex map
-Complex map commands are declared by the section title `[kplane]` in the configuration file.
-The speciality of MSModel is the plotting of complex maps.
+Complex map commands are declared by the section title `[kplane]` in the configuration file. Complex maps are the speciality of MSModel.
 The complex map command evaluates the _characteristic function_
 
 <p>$$\chi(k) = \ln\det\mathsf{M}(k)$$</p>
@@ -176,7 +175,7 @@ The Laplacian of the real part of this function yields the two-dimensional reson
 
 <p>$$\rho^{(2)}(k) = \frac{1}{2\pi}\left(\frac{\partial^2}{\partial k_r^2} + \frac{\partial^2}{\partial k_i^2}\right)\mathrm{Re}\,\chi(k)$$</p>
 
-See also the paper [Phys. Rev. A **105**, 042205 (2022)](https://doi.org/10.1103/PhysRevA.105.042205) with more details on this method.
+See also the paper [Phys. Rev. A **105**, 042205 (2022)](https://doi.org/10.1103/PhysRevA.105.042205) for more details on this method.
 The complex map command is able to average the characteristic function over a certain number of random configurations of the scatterers.
 
 The options are the following:
@@ -187,7 +186,7 @@ The options are the following:
 * `ysample`: Vertical number of samples or pixels. Note that this argument is optional. If not given, it will be deduced by the program in order to keep the pixel aspect ratio as close to 1 as possible.
 * `color`: Parameters of the coloring scheme. The format is `<scheme> <type> <contrast> [rev]`.
 	- The `<scheme>` is either `temperature`, `magma`, `hesperia`, `viridis`, `parula`. The `temperature` scheme is recommended.
-	These color schemes are inspired by the colormaps developed by Stefan van der Walt and Nathaniel Smith for Matplotlib (see [their work](https://bids.github.io/colormap/)).
+	These schemes are inspired by the colormaps developed by Stefan van der Walt and Nathaniel Smith for Matplotlib (see [their work](https://bids.github.io/colormap/)).
 	- The `<type>` is either `seq` for sequential, or `div` for diverging from zero.
 	- The `<contrast>` parameter controls the contrast. The value 5 gives acceptable results for most purposes.
 	- Optionally, the flag `rev` can be added at the end to reverse the color scheme.
@@ -223,7 +222,7 @@ The options are the following:
 
 ### complex histogram
 Complex histograms are declared by the section title `[muplane]` in the configuration file.
-Complex histograms are histograms of the complex eigenvalues of either the multiple-scattering matrix, $\mathsf{M}(k)$, or its normalized version
+Complex histograms are two-dimensional plots of the distribution of the complex eigenvalues of either the multiple-scattering matrix, $\mathsf{M}(k)$, or its normalized version
 
 <p>$$N_{ij}(k) = \mathrm{i}\delta_{ij} - \frac{G^+(k,\mathbf{x}_i\mid\mathbf{x}_j)}{I(k,0)}(1-\delta_{ij})$$</p>
 
@@ -246,7 +245,7 @@ The options are the following:
 
 ### imaginary histogram
 Imaginary histograms are declared by the section title `[imag_mu]` in the configuration file.
-The principle is very similar to [complex histograms](#complex-histogram) but restricted to the marginal distribution of the imaginary parts of the eigenvalues of $\mathsf{M}(k)$ for a given value of $k$ (only real).
+The principle is very similar to [complex histograms](#complex-histogram), but limited to the marginal distribution of the imaginary parts of the eigenvalues of $\mathsf{M}(k)$ for a given value of $k$ (only real).
 
 The options are the following:
 * `k`: Wavenumber at which the matrix is computed. The value must be real.
@@ -267,8 +266,8 @@ The options are the following:
 * `source`: Type of incident wave, either `plane` or `spherical`.
 * `nx`: Number of horizontal pixels used to render the wavefunction.
 * `ny`: Number of vertical pixels used to render the wavefunction.
-* `xrange`: Horizontal range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
-* `yrange`: Vertical range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
+* `xrange`: Horizontal range of the region to be rendered in position space (units of $\varsigma$). This should be estimated by the user from the size of the medium.
+* `yrange`: Vertical range of the region to be rendered in position space (units of $\varsigma$). This should be estimated by the user from the size of the medium.
 * `color1`: Color scheme used for the averaged wavefunction. See also the `color` option of [complex maps](#complex-map) for details of the syntax.
 * `color2`: Color scheme used for the averaged square modulus of the wavefunction, i.e., the density. Same syntax as `color1`.
 
@@ -283,7 +282,7 @@ The options are the following :
 * `k`: Wavenumber of the incident wave (possibly complex). The format is `<real><imag>i` using the sign of `<imag>` as the separator.
 * `source`: Type of incident wave, either `plane` or `spherical`.
 * `nbin`: Number of evaluation points used to render the wavefunction.
-* `xrange`: Horizontal range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
+* `xrange`: Horizontal range of the region to be rendered in position space (units of $\varsigma$). This should be estimated by the user from the size of the medium.
 
 ### differential cross section
 Plots of the differential cross section are declared by the section title `[diff_cross_section]` in the configuration file.
@@ -370,13 +369,13 @@ The typical display of the `msmain` command is the following:
 [EXEC] Wavefun, 4 thr,    1/   1 seed | 00:00:01 [##############################] 100.00% ETA 00:00:00...
 ```
 This display provides the user with the relevant information about the simulation, especially the type of random [medium](#medium).
-In particular, it shows a progress bar and tries to estimate the remaining time. In this regard, `ETA` means _estimated time of arrival_.
-Since the program is multi-threaded, the number of threads is displayed (`thr` means _threads_).
+In particular, it shows a progress bar and tries to estimate the remaining time. In this regard, `ETA` means _estimated time of arrival_ or _accomplishment_.
+Since the program is multi-threaded, the number of threads is also displayed (`thr` means _threads_).
 At the end of the computation, a line looking like
 ```
 ====== Data saved to 'out/d2/ball/max/n100_L7XJOX8Y.dat'
 ```
-is printed to inform the user where the results have been saved.
+is printed to indicate the user where the results have been saved.
 To plot the results, one can apply `msplot` to the this file (see also [msplot](#msplot)):
 ```
 ./msplot out/d2/ball/max/n100_L7XJOX8Y.dat
