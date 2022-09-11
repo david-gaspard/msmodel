@@ -25,7 +25,7 @@ typedef struct DiffCrossSection_s {
 	                    //The first level is for the bins, and the second for the quantiles within the bin.
 	double* mean;       //Array containing the mean curve as a single number per bin (size nbin).
 	int nc;             //Number of desired sample curves for the first seeds.
-	double* curve;       //Array containing the curves obtained with the "nc" first seeds (size nc*nbin). The first level is for the bin, and the second for the curve.
+	double* curve;      //Array containing the curves obtained with the "nc" first seeds (size nc*nbin). The first level is for the bin, and the second for the curve.
 	char title[80];     //Title of the random function (optional).
 	double realtime;    //Real computation time (in seconds).
 } DiffCrossSection;

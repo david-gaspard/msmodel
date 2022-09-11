@@ -29,7 +29,7 @@
 /**
  * Define some constants:
  */
-static const char USAGE[] = "[USAGE] %s [-kclxmr] file1.dat [file2.dat file3.dat ...]\n";
+static const char USAGE[] = "[USAGE] %s [-kcmlxrt] file1.dat [file2.dat file3.dat ...]\n";
 static const char COMPILER[] = "lualatex"; //LaTeX compiler. Use "pdflatex" by default, and "lualatex" to exceed TeX's memory limit.
 static const char CROPPER[] = "pdfcrop";
 

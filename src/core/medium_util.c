@@ -38,7 +38,7 @@ void init_medium(Medium* med, int d, int n, ScatteringModel* scmodel, Shape shap
 		printf("[ERROR] The number of atoms should be strictly greater than 1, aborting...\n");
 		exit(EXIT_FAILURE);
 	}
-	if (n > 2e4) {
+	if (n > 5e4) {
 		printf("[ERROR] The number of atoms n=%d is too large, aborting...\n", n);
 		exit(EXIT_FAILURE);
 	}
