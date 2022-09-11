@@ -23,15 +23,15 @@
 ## PRESENTATION 
 
 MSModel is a program written in C for solving multiple-scattering problems of scalar waves in disordered media made of point scatterers.
-It was developed by David Gaspard for his doctoral thesis, mainly between July 2020 and April 2021.
-This programs implements the Foldy-Lax model, which restricts the scatterings with the point-like scatterers to $s$-waves, i.e., involving only spherical waves.
+It was developed by David Gaspard for his doctoral thesis mainly between July 2020 and April 2021.
+This programs implements the Foldy-Lax model, which assumes that the scatterings of the wave with the point-like scatterers involve only spherical waves ($s$-waves).
 This model has the advantage that it can be generalized to an arbitrary number of spatial dimensions: $d=1,2,3,4,\ldots$.
 In this model, one considers $N$ point scatterers located at positions <tspan>$\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N$</tspan> and a quantum spinless particle of wavenumber $k=||\mathbf{k}||$.
-The wave function of the particle can be expressed as
+The wavefunction of the particle can be expressed as
 
 <p>$$\psi(k,\mathbf{r}) = \phi(k,\mathbf{r}) + \sum_{i=1}^N a_i G^+(k,\mathbf{r}\mid\mathbf{x}_i)$$</p>
 
-where $\phi(k,\mathbf{r})$ is the incident wave function, which is typically but not necessarily a plane wave $\mathrm{e}^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}$, and $G^+(k,\mathbf{r}\mid\mathbf{x}_i)$ denotes the (outgoing) Green function corresponding to the free propagation of the particle from point $\mathbf{x}_i$ to point $\mathbf{r}$.
+where $\phi(k,\mathbf{r})$ is the incident wavefunction, which is typically but not necessarily a plane wave $\mathrm{e}^{\mathrm{i}\mathbf{k}\cdot\mathbf{r}}$, and $G^+(k,\mathbf{r}\mid\mathbf{x}_i)$ denotes the (outgoing) Green function corresponding to the free propagation of the particle from point $\mathbf{x}_i$ to point $\mathbf{r}$.
 The amplitudes $a_i\in\mathbb{C}$ $\forall i\in\{1,\ldots,N\}$ on all the scattering sites are given by the Foldy-Lax linear system of equations, which reads
 
 <p>$$\mathsf{M}(k)\cdot\mathbf{a} = \boldsymbol{\phi}$$</p>
@@ -51,15 +51,15 @@ In general, this determinantal equation cannot be cast into a simple eigenvalue 
 
 In this framework, the two main purposes of the MSModel program are:
 
-* solving the Foldy-Lax linear system and showing the wave function,
-* finding many resonances of the system, i.e., the values of $k\in\mathbb{C}$ which satisfy the determinantal equation above.
+* solving the Foldy-Lax linear system and showing the wavefunction,
+* finding the resonances of the system, i.e., the values of $k\in\mathbb{C}$ which satisfy the determinantal equation above.
 
 More details on the mathematical methods are available in the following papers:
 
 * David Gaspard and Jean-Marc Sparenberg, [Phys. Rev. A **105**, 042204 (2022)](https://doi.org/10.1103/PhysRevA.105.042204).
 * David Gaspard and Jean-Marc Sparenberg, [Phys. Rev. A **105**, 042205 (2022)](https://doi.org/10.1103/PhysRevA.105.042205).
 
-The results obtained with the present program were published in these papers.
+Some results obtained with the present program were published in these papers.
 
 ## INSTALLATION
 
@@ -119,7 +119,7 @@ In the path here above, the notations are (see also the [medium specifications](
 * `<uid>` is a unique identifier based on the current time (updated every millisecond).
 
 The options of `msmain` are the following:
-* `-p <nthread>`: Set the number of threads to `<nthread>` for the parallelization. The default value is 4. More generally, the recommended value is the number of physical cores of the processor. Higher values are also possible on [hyper-threaded processors](https://en.wikipedia.org/wiki/Hyper-threading), but the speedup may not be significant.
+* `-p <nthread>`: Set the number of threads to `<nthread>` for the parallelization. The default value is 4. In general, the recommended value is the number of physical cores of the processor. Higher values are also possible on [hyper-threaded processors](https://en.wikipedia.org/wiki/Hyper-threading), but the speedup may not be significant.
 * `-?`: Print a short command summary and exits.
 
 ### msplot
@@ -135,10 +135,10 @@ The options of `msplot` are the following:
 * `-k`: Keep the temporary PNG and TikZ files which are deleted by default.
 * `-c`: Crop the final PDF file using `pdfcrop`.
 * `-m <seed>`: Display the random configuration of the point scatterers for the given `<seed>`. The `<seed>` must be positive and not zero.
-* `-l`: Take the Laplacian of complex maps, complex cuts, or logarithmic cuts, hence showing the resonance density. This option is only relevant for `*.dat` files containing complex maps, complex cuts, or logarithmic cuts.
-* `-x <real>`: Display a vertical cut of the complex map at the given real part `<real>`. This option only applies to complex maps. However, note that it is a deprecated option. Indeed, it is more appropriate and efficient to compute a vertical cut using the [complex cut](#complex-cut) or the [log cut](#log-cut) utilities.
-* `-r <lmax>`: Compute and display the resonances predicted by the effective square well approximation assuming a spherical medium. `<lmax>` is the maximum number of partial waves considered in the calculation. This option only applies to complex maps.
-* `-t`: Use logarithmic scale to draw the $\theta$ angle of the differential cross section. This option is only relevant for `*.dat` files containing differential cross section data. By default, the angle of the differential cross section is plotted in linear scale.
+* `-l`: Take the Laplacian of [complex maps](#complex-map), [complex cuts](#complex-cut), or [logarithmic cuts](#logarithmic-cut), hence showing the resonance density. This option is only relevant for `*.dat` files containing [complex maps](#complex-map), [complex cuts](#complex-cut), or [logarithmic cuts](#logarithmic-cut).
+* `-x <real>`: Display a vertical cut of the [complex map](#complex-map) at the given real part `<real>`. This option only applies to [complex maps](#complex-map). However, note that it is a deprecated option. Indeed, it is more appropriate and efficient to compute a vertical cut using the [complex cut](#complex-cut) or even the [logarithmic cut](#logarithmic-cut) utilities.
+* `-r <lmax>`: Compute and display the resonances predicted by the effective square well approximation assuming a spherical medium. `<lmax>` is the maximum number of partial waves considered in the calculation. This option only applies to [complex maps](#complex-map).
+* `-t`: Use logarithmic scale to draw the $\theta$ angle of the differential cross section. This option is only relevant for `*.dat` files containing [differential cross section](#differential-cross-section) data. By default, the angle of the differential cross section is plotted in linear scale.
 * `-?`: Print a short command summary and exits.
 
 ## CONFIGURATION FILE
@@ -160,14 +160,14 @@ Therefore, the unit of the wavenumber (including the complex wavenumber) will be
 The options are the following:
 * `dimension`: Number of spatial dimensions of the physical space in which the scatterers are placed. It must be a nonzero positive integer less than 20.
 * `natom`: Total number of scatterers in the medium. It must be a nonzero positive integer less than 50000 for safety reasons.
-* `model`: Model of point scattering. It is either `hardsphere <alpha>`, `softsphere <alpha>`, `resonant <real> <imag>`, or `maximum`. The parameter `<alpha>` is the scattering length in unit of `sp`, and `<real> <imag>` is the position of the resonance pole in units of `1/sp`. Regarding the hard-sphere model, one should keep in mind that the cross section of the individual scatterers vanishes when $\alpha k$ matches a zero of the Bessel function $J_{\frac{d-2}{2}}(\alpha k)$. This can produce a strong singularity in the complex plane. Therefore, one should restrict the exploration region to $|\alpha k| < j_{\frac{d-2}{2}}$, where $j_\nu$ is the first nontrivial zero of the Bessel function $J_\nu(z)$.
-* `shape`: Shape or type of the medium in which the scatterers are placed. It is either `cube`, `ball`, `lattice`, or `gaussian`. It should be noted that `ball` is automatically converted to `cube` by the program in one dimension. The density of the medium is kept equal to `1 sp^-d` by definition of `sp`.
+* `model`: Model of point scattering. It is either `hardsphere <alpha>`, `softsphere <alpha>`, `resonant <real> <imag>`, or `maximum`. The parameter `<alpha>` is the scattering length in unit of $\varsigma$, and `<real> <imag>` is the position of the resonance pole in units of $1/\varsigma$. Regarding the hard-sphere model, one should keep in mind that the cross section of the individual scatterers vanishes when $\alpha k$ matches a zero of the Bessel function $J_{\frac{d-2}{2}}(\alpha k)$. This can produce a strong singularity in the complex plane. Therefore, one should restrict the exploration region to $|\alpha k| < j_{\frac{d-2}{2}}$, where $j_\nu$ is the first nontrivial zero of the Bessel function $J_\nu(z)$.
+* `shape`: Shape or type of the medium in which the scatterers are placed. It is either `cube`, `ball`, `lattice`, or `gaussian`. It should be noted that `ball` is automatically converted to `cube` by the program in one dimension. The density of the medium is kept equal to $1/\varsigma^d$ by definition of $\varsigma$.
 * `ratio`: Aspect ratio, or elongation, of the medium. The deformation preserves the unitary density of the medium. The value `ratio=1` corresponds to the absence of deformation. Used to increase the upper limit on scatterer-scatterer distances.
 
 ### complex map
 Complex map commands are declared by the section title `[kplane]` in the configuration file.
 The speciality of MSModel is the plotting of complex maps.
-A complex map command is an evaluation of the _characteristic function_
+The complex map command evaluates the _characteristic function_
 
 <p>$$\chi(k) = \ln\det\mathsf{M}(k)$$</p>
 
@@ -176,12 +176,13 @@ The Laplacian of the real part of this function yields the two-dimensional reson
 
 <p>$$\rho^{(2)}(k) = \frac{1}{2\pi}\left(\frac{\partial^2}{\partial k_r^2} + \frac{\partial^2}{\partial k_i^2}\right)\mathrm{Re}\,\chi(k)$$</p>
 
+See also the paper [Phys. Rev. A **105**, 042205 (2022)](https://doi.org/10.1103/PhysRevA.105.042205) with more details on this method.
 The complex map command is able to average the characteristic function over a certain number of random configurations of the scatterers.
 
 The options are the following:
 * `nseed`: Number of configurations of the scatterers, or seeds, that will be averaged.
-* `xrange`: Horizontal range of the complex map in the $k$-plane (units of `1/sp`). The format is `<xmin>:<xmax>`.
-* `yrange`: Vertical range of the complex map in the $k$-plane (units of `1/sp`). The format is `<ymin>:<ymax>`.
+* `xrange`: Horizontal range of the complex map in the $k$-plane (units of $1/\varsigma$). The format is `<xmin>:<xmax>`.
+* `yrange`: Vertical range of the complex map in the $k$-plane (units of $1/\varsigma$). The format is `<ymin>:<ymax>`.
 * `xsample`: Horizontal number of samples or pixels. Larger values needs more computation time. A good trade-off is between 150 and 300.
 * `ysample`: Vertical number of samples or pixels. Note that this argument is optional. If not given, it will be deduced by the program in order to keep the pixel aspect ratio as close to 1 as possible.
 * `color`: Parameters of the coloring scheme. The format is `<scheme> <type> <contrast> [rev]`.
@@ -255,21 +256,21 @@ The options are the following:
 
 ### wavefunction
 Wavefunction plots are declared by the section title `[wavefunction]` in the configuration file.
-Wavefunction plots consists in the representation of a two-dimensional cut in the $xy$ plane of both the real part of the wave function, $\mathrm{Re}\psi(k,\mathbf{r})$, and its square modulus, $|\psi(k,\mathbf{r})|^2$, for a given incident wave $\phi(k,\mathbf{r})$, that may be plane or spherical.
+Wavefunction plots consists in the representation of a two-dimensional cut in the $xy$ plane of both the real part of the wavefunction, $\mathrm{Re}\psi(k,\mathbf{r})$, and its square modulus, $|\psi(k,\mathbf{r})|^2$, for a given incident wave $\phi(k,\mathbf{r})$, that may be plane or spherical.
 Plane waves are necessarily in the direction of the $x$ axis, and spherical waves are necessarily located at the center of the medium.
-The command allow the wave function (and its square modulus) to be averaged over a certain number of random configurations of the scatterers.
+The command allow the wavefunction (and its square modulus) to be averaged over a certain number of random configurations of the scatterers.
 
 The options are the following:
 * `nseed`: Number of configurations of the scatterers, or seeds, that will be averaged. To disable averaging, simply use `nseed=1`.
 * `iseed`: Index of the first used seed (included). This option is typically useful only when `nseed=1`.
 * `k`: Wavenumber of the incident wave (possibly complex). The format is `<real><imag>i` using the sign of `<imag>` as the separator.
 * `source`: Type of incident wave, either `plane` or `spherical`.
-* `nx`: Number of horizontal pixels used to render the wave function.
-* `ny`: Number of vertical pixels used to render the wave function.
-* `xrange`: Horizontal range of the region to be rendered in position space (in `sp`). This should be estimated by the user from the size of the medium.
-* `yrange`: Vertical range of the region to be rendered in position space (in `sp`). This should be estimated by the user from the size of the medium.
-* `color1`: Color scheme used for the averaged wave function. See also the `color` option of [complex maps](#complex-map) for details of the syntax.
-* `color2`: Color scheme used for the averaged square modulus of the wave function, i.e., the density. Same syntax as `color1`.
+* `nx`: Number of horizontal pixels used to render the wavefunction.
+* `ny`: Number of vertical pixels used to render the wavefunction.
+* `xrange`: Horizontal range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
+* `yrange`: Vertical range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
+* `color1`: Color scheme used for the averaged wavefunction. See also the `color` option of [complex maps](#complex-map) for details of the syntax.
+* `color2`: Color scheme used for the averaged square modulus of the wavefunction, i.e., the density. Same syntax as `color1`.
 
 ### wavefunction cut
 Wavefunction cuts are declared by the section title `[wavefunction_cut]` in the configuration file.
@@ -282,7 +283,7 @@ The options are the following :
 * `k`: Wavenumber of the incident wave (possibly complex). The format is `<real><imag>i` using the sign of `<imag>` as the separator.
 * `source`: Type of incident wave, either `plane` or `spherical`.
 * `nbin`: Number of evaluation points used to render the wavefunction.
-* `xrange`: Horizontal range of the region to be rendered in position space (in `sp`). This should be estimated by the user from the size of the medium.
+* `xrange`: Horizontal range of the region to be rendered in position space (in $\varsigma$). This should be estimated by the user from the size of the medium.
 
 ### differential cross section
 Plots of the differential cross section are declared by the section title `[diff_cross_section]` in the configuration file.
@@ -355,7 +356,8 @@ The options are the following :
 
 ## EXAMPLE
 In this section, one gives a typical usage example of the MSModel program for the input file `wavefun.conf` available in the `examples/` directory.
-First, the file can be passed to `msmain` as follows:
+This file starts the computation of the wavefunction for a single random configuration of the scatterers (see also [wavefunction](#wavefunction)).
+First, the file can be passed to `msmain` as follows (see also [msmain](#msmain)):
 ```
 ./msmain examples/wavefun.conf
 ```
@@ -367,7 +369,7 @@ The typical display of the `msmain` command is the following:
 [INFO] Wave function of size 300x300 in region x=-8:8 y=-8:8 for 1 seeds with source plane k=10+0i.
 [EXEC] Wavefun, 4 thr,    1/   1 seed | 00:00:01 [##############################] 100.00% ETA 00:00:00...
 ```
-This display provides the user with the relevant information about the simulation, especially the type of random medium.
+This display provides the user with the relevant information about the simulation, especially the type of random [medium](#medium).
 In particular, it shows a progress bar and tries to estimate the remaining time. In this regard, `ETA` means _estimated time of arrival_.
 Since the program is multi-threaded, the number of threads is displayed (`thr` means _threads_).
 At the end of the computation, a line looking like
@@ -375,7 +377,7 @@ At the end of the computation, a line looking like
 ====== Data saved to 'out/d2/ball/max/n100_L7XJOX8Y.dat'
 ```
 is printed to inform the user where the results have been saved.
-To plot the results, one can apply `msplot` to the this file:
+To plot the results, one can apply `msplot` to the this file (see also [msplot](#msplot)):
 ```
 ./msplot out/d2/ball/max/n100_L7XJOX8Y.dat
 ```
