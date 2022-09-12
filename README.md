@@ -65,37 +65,37 @@ Some results obtained with the present program were published in these papers.
 
 ### Dependencies
 
-MSModel has only been tested on Linux systems and especially Ubuntu 20+, but it should work on other Linux distributions too.
-MSModel requires the GCC 9+ compiler (with the `-fms-extensions` option available), but also LAPACK, and OpenMP to compile properly.
-In addition, upon execution, this program calls external UNIX commands including `file`, `which`, `rm`, `pnmtopng`, `lualatex`, `pdfcrop`.
+MSModel has only been tested on Linux systems and especially [Ubuntu 20+](https://en.wikipedia.org/wiki/Ubuntu), but it should work on other Linux distributions too.
+MSModel requires the [GCC 9+ compiler](https://en.wikipedia.org/wiki/GNU_Compiler_Collection) (with the `-fms-extensions` option available), but also [LAPACK](https://en.wikipedia.org/wiki/LAPACK), and [OpenMP](https://en.wikipedia.org/wiki/OpenMP) to compile properly.
+In addition, upon execution, this program calls external UNIX commands including `file`, `which`, `rm`, `pnmtopng`, `lualatex`, and `pdfcrop`.
 
 * `pnmtopng` is needed to convert PNM images to (lighter) PNG images (see the [manpages](https://manpages.org/pnmtopng)).
-* `lualatex` is needed to compile TikZ/PGFPlots graphics to PDF (see the [manpages](https://manpages.org/lualatex)).
+* `lualatex` is needed to compile [TikZ/PGFPlots](https://en.wikipedia.org/wiki/PGF/TikZ) graphics to PDF (see the [manpages](https://manpages.org/lualatex)).
 * `pdfcrop` is an optional command to remove empty margins in the PDF file generated in LaTeX (see the [manpages](https://manpages.org/pdfcrop)).
 
 ### Installation guide
 
 To install MSModel, the recommended way is to clone the present repository to your own machine.
-For this purpose, make sure `git` is installed on your machine entering `git --version` in a terminal.
+For this purpose, make sure Git is installed on your machine by entering `git --version` in a terminal.
 If this command does not work, then install `git` using
 ```
 sudo apt update
 sudo apt install git
 ```
-or any other package manager at your convenience. Note that installing Git may depend on your operating system.
-Before running, Git will probably ask you to set up an account using `git config`.
+or any other package manager at your convenience. Note that this installation procedure may depend on your operating system.
+Before running any command, Git will probably ask you to set up an account using `git config`.
 Once Git is installed, type the following command:
 ```
 git clone <url>
 ```
 where `<url>` should be replaced by the GitHub URL of this repository (see the `Code` button in the top-right corner).
-After the download is completed, `cd` to the new `msmodel` directory and compile the sources using:
+After the download is completed, `cd` to the newly created `msmodel` directory and compile the sources using:
 ```
 make all
 ```
 If everything works properly, you should see a new `bin/` directory with the object files and two new executables `msmain` and `msplot`.
-Additional test executables can be compiled using `make test`.
-To remove all the binary files, just enter `make clean`. This last command is generally useful when there are changes to the code.
+Additional test executables can be compiled using `make test`, but there are not necessary for the operation of the program.
+To remove all the binary files of the main program, just enter `make clean`. This last command is generally useful when there are changes to the code.
 
 ## USAGE AND OPTIONS
 MSModel comes with two main executables, namely `msmain` and `msplot`.
