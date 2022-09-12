@@ -66,12 +66,12 @@ Some results obtained with the present program were published in these papers.
 ### Dependencies
 
 MSModel has only been tested on Linux systems and especially Ubuntu 20+, but it should work on other Linux distributions too.
-MSModel requires the GCC compiler (with the `-fms-extensions` option available), but also LAPACK, and OpenMP to compile properly.
+MSModel requires the GCC 9+ compiler (with the `-fms-extensions` option available), but also LAPACK, and OpenMP to compile properly.
 In addition, upon execution, this program calls external UNIX commands including `file`, `which`, `rm`, `pnmtopng`, `lualatex`, `pdfcrop`.
 
-* `pnmtopng` is needed to convert PNM images to (lighter) PNG images.
-* `lualatex` is needed to compile TikZ/PGFPlots graphics to PDF.
-* `pdfcrop` is an optional command to crop PDF generated in LaTeX.
+* `pnmtopng` is needed to convert PNM images to (lighter) PNG images (see the [manpages](https://manpages.org/pnmtopng)).
+* `lualatex` is needed to compile TikZ/PGFPlots graphics to PDF (see the [manpages](https://manpages.org/lualatex)).
+* `pdfcrop` is an optional command to remove empty margins in the PDF file generated in LaTeX (see the [manpages](https://manpages.org/pdfcrop)).
 
 ### Installation guide
 
@@ -79,10 +79,12 @@ To install MSModel, the recommended way is to clone the present repository to yo
 For this purpose, make sure `git` is installed on your machine entering `git --version` in a terminal.
 If this command does not work, then install `git` using
 ```
+sudo apt update
 sudo apt install git
 ```
-or any other package manager.
-Now, type the following commands:
+or any other package manager at your convenience. Note that installing Git may depend on your operating system.
+Before running, Git will probably ask you to set up an account using `git config`.
+Once Git is installed, type the following command:
 ```
 git clone <url>
 ```
@@ -91,10 +93,9 @@ After the download is completed, `cd` to the new `msmodel` directory and compile
 ```
 make all
 ```
-If everything works properly, you should see a new `bin/` directory with the object files and two executables `msmain` and `msplot`.
+If everything works properly, you should see a new `bin/` directory with the object files and two new executables `msmain` and `msplot`.
 Additional test executables can be compiled using `make test`.
-To remove all the binary files of the program, enter `make clean`.
-This last command is more generally useful when there are changes to the code.
+To remove all the binary files, just enter `make clean`. This last command is generally useful when there are changes to the code.
 
 ## USAGE AND OPTIONS
 MSModel comes with two main executables, namely `msmain` and `msplot`.
@@ -162,6 +163,10 @@ The options are the following:
 * `natom`: Total number of scatterers in the medium. It must be a nonzero positive integer less than 50000 for safety reasons.
 * `model`: Model of point scattering. It is either `hardsphere <alpha>`, `softsphere <alpha>`, `resonant <real> <imag>`, or `maximum`. The parameter `<alpha>` is the scattering length in unit of $\varsigma$, and `<real> <imag>` is the position of the resonance pole in units of $1/\varsigma$. Regarding the hard-sphere model, one should keep in mind that the cross section of the individual scatterers vanishes when $\alpha k$ matches a zero of the Bessel function $J_{\frac{d-2}{2}}(\alpha k)$. This can produce a strong singularity in the complex plane. Therefore, one should restrict the exploration region to $|\alpha k| < j_{\frac{d-2}{2}}$, where $j_\nu$ is the first nontrivial zero of the Bessel function $J_\nu(z)$.
 * `shape`: Shape or type of the medium in which the scatterers are placed. It is either `cube`, `ball`, `lattice`, or `gaussian`. It should be noted that `ball` is automatically converted to `cube` by the program in one dimension. The density of the medium is kept equal to $1/\varsigma^d$ by definition of $\varsigma$.
+	- `cube`: Scatterers are placed at random in a cubic region: $[0,L]^d$.
+	- `ball`: Scatterers are placed at random in a spherical region: $||\mathbf{r}||\leq R$.
+	- `lattice`: Scatterers are placed on a regular cubic lattice with a spacing of 1.
+	- `gaussian`: Scatterers are placed at random according to an isotropic [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) in dimension $d$.
 * `ratio`: Aspect ratio, or elongation, of the medium. The deformation preserves the unitary density of the medium. The value `ratio=1` corresponds to the absence of deformation. Used to increase the upper limit on scatterer-scatterer distances.
 
 ### complex map
@@ -318,7 +323,6 @@ The variation of density of states is defined as:
 
 <p>$$\Delta\mathcal{D}(k^2) = -\frac{1}{\pi} \mathrm{Im}\,\mathrm{Tr}\left(\mathsf{M}(k)^{-1} \frac{\mathrm{d}\mathsf{M}(k)}{\mathrm{d}(k^2)}\right)$$</p>
 
-More information about this function is available in David Gaspard's thesis.
 As for the previous commands, this command is able to average over a certain number of random configurations of the scatterers, but also to show the quartiles of the distribution of the ordinates.
 
 The options are the following :
