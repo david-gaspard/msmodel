@@ -23,10 +23,10 @@
 ## PRESENTATION 
 
 MSModel is a program written in C for solving multiple-scattering problems of scalar waves in disordered media made of point scatterers.
-It was developed by David Gaspard for his doctoral thesis mainly between July 2020 and April 2021.
-This programs implements the Foldy-Lax model, which assumes that the scatterings of the wave with the point-like scatterers involve only spherical waves, i.e., $s$-waves.
+It was originally developed by David Gaspard for his doctoral thesis. The main development took place between July 2020 and April 2021.
+This programs implements the Foldy-Lax model, which assumes that the scatterings of the wave with the point scatterers involve only _spherical waves_, also known as $s$-waves.
 This model has the advantage that it can be generalized to an arbitrary number of spatial dimensions: $d=1,2,3,4,\ldots$.
-In this model, one considers $N$ point scatterers located at positions <tspan>$\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N$</tspan> and a quantum spinless particle of wavenumber $k=||\mathbf{k}||$.
+In this model, one considers a spinless quantum particle of wavenumber $k=||\mathbf{k}||$ colliding with $N$ point scatterers located at the positions <tspan>$\mathbf{x}_1,\mathbf{x}_2,\ldots,\mathbf{x}_N$</tspan>.
 The wavefunction of the particle can be expressed as
 
 <p>$$\psi(k,\mathbf{r}) = \phi(k,\mathbf{r}) + \sum_{i=1}^N a_i G^+(k,\mathbf{r}\mid\mathbf{x}_i)$$</p>
@@ -37,7 +37,7 @@ The amplitudes $a_i\in\mathbb{C}$ $\forall i\in\{1,\ldots,N\}$ on all the scatte
 <p>$$\mathsf{M}(k)\cdot\mathbf{a} = \boldsymbol{\phi}$$</p>
 
 where $\mathbf{a}=(a_1,\ldots,a_N)$ and $\boldsymbol{\phi}=(\phi(k,\mathbf{x}_1),\ldots,\phi(k,\mathbf{x}_N))$ are column vectors containing the amplitudes and the incident waves on the scattering sites, respectively.
-The notation $\mathsf{M}(k)$ stands for the multiple-scattering matrix, whose elements are
+The notation $\mathsf{M}(k)$ stands for the _multiple-scattering matrix_, whose elements are given by
 
 <p>$$M_{ij}(k) = F(k)^{-1} \delta_{ij} - G^+(k,\mathbf{x}_i\mid\mathbf{x}_j) (1-\delta_{ij})$$</p>
 
@@ -54,12 +54,12 @@ In this framework, the two main purposes of the MSModel program are:
 * solving the Foldy-Lax linear system and showing the wavefunction,
 * finding the resonances of the system, i.e., the values of $k\in\mathbb{C}$ which satisfy the determinantal equation above.
 
-More details on the mathematical methods are available in the following papers:
+More details on the mathematical methods used by MSModel are available in the following papers:
 
 * David Gaspard and Jean-Marc Sparenberg, [Phys. Rev. A **105**, 042204 (2022)](https://doi.org/10.1103/PhysRevA.105.042204).
 * David Gaspard and Jean-Marc Sparenberg, [Phys. Rev. A **105**, 042205 (2022)](https://doi.org/10.1103/PhysRevA.105.042205).
 
-Some results obtained with the present program were published in these papers.
+Some results obtained with MSModel were published in these papers.
 
 ## INSTALLATION
 
