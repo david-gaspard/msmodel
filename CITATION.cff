@@ -1,0 +1,43 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MSModel
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: David
+    family-names: Gaspard
+    affiliation: Université libre de Bruxelles
+    orcid: 'https://orcid.org/0000-0002-4449-8782'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.8229730
+    description: The DOI of MSModel v1.0.0
+repository-code: 'https://github.com/david-gaspard/msmodel'
+abstract: >
+  MSModel v1.0.0 - Program for solving multiple-scattering
+  problems
+
+
+  This program, written in C and based on LAPACK, solves the
+  Foldy-Lax multiple-scattering equations of a scalar wave
+  in a random point field to determine many physical
+  quantities. In particular, it can be used to find the wave
+  function and its intensity, the differential cross section
+  of the point field, and the distribution of resonance
+  poles in the complex plane of the wavenumber. The program
+  uses multi-threading with OpenMP to accelerate the
+  averaging of these quantities over the random
+  configurations of the point field.
+
+
+  Note on v1.0.0 : Original version of the MSModel program
+  in its final state after David Gaspard's PhD thesis
+  defended in June 2022.
+license: GPL-3.0
+commit: 46fe3379d0693cf12de87525f9dd8bdd04f7315b
+version: v1.0.0
+date-released: '2023-08-09'
