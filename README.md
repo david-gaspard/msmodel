@@ -1,5 +1,7 @@
 # MSModel
 
+[![DOI](https://zenodo.org/badge/534748749.svg)](https://zenodo.org/badge/latestdoi/534748749)
+
 * [PRESENTATION](#presentation)
 * [INSTALLATION](#installation)
 	- [Dependencies](#dependencies)
