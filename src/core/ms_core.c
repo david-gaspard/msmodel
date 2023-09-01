@@ -359,7 +359,8 @@ void find_eigenstates_serial_2(EigenstateList* eigls, int* nroot, dcomplex* kroo
 	}
 	print_end(*nroot, omp_get_wtime()-begin, msg);
 	int nfail = filter_cvector(nroot, kroot, conv); //Removes the non-converged roots.
-	int ndupl = uniq_cvector(nroot, kroot, sqrt(eigls->toler)); //Removes duplicate roots with relatively large scope radius.
+	double dupl_toler = 1e-14;  //Relative tolerance between different roots (when eliminating duplicates).
+	int ndupl = uniq_cvector(nroot, kroot, dupl_toler); //Removes duplicate roots with relatively large scope radius.
 	printf("[INFO] Found %d/%d valid roots, %d duplicates, %d failed.\n", *nroot, eigls->ntarget, ndupl, nfail);
 	eigls->realtime = omp_get_wtime()-begin;  //Saves the total computation time (in seconds).
 	free(conv);
@@ -391,7 +392,8 @@ void find_eigenstates_serial_3(EigenstateList* eigls, int* nroot, dcomplex* kroo
 	}
 	print_end(*nroot, omp_get_wtime()-begin, msg);
 	int nfail = filter_cvector(nroot, kroot, conv); //Removes the non-converged roots.
-	int ndupl = uniq_cvector(nroot, kroot, sqrt(eigls->toler)); //Removes duplicate roots with relatively large scope radius.
+	double dupl_toler = 1e-14;  //Relative tolerance between different roots (when eliminating duplicates).
+	int ndupl = uniq_cvector(nroot, kroot, dupl_toler); //Removes duplicate roots with relatively large scope radius.
 	printf("[INFO] Found %d/%d valid roots, %d duplicates, %d failed.\n", *nroot, eigls->ntarget, ndupl, nfail);
 	eigls->realtime = omp_get_wtime()-begin;  //Saves the total computation time (in seconds).
 	free(conv);

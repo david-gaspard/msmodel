@@ -129,7 +129,7 @@ char* eigmethod_to_string(EigenstateMethod method) {
  */
 void check_eigenstate_list(EigenstateList* eigls) {
 	int issuspect, nsuspect = 0;  //Current number of suspect states.
-	double delta, toldk, tolmu = sqrt(eigls->toler); //Tolerance over the "mu" eigenvalue in absolute value.
+	double delta, toldk, tolmu = 1e-6; //Tolerance over the "mu" eigenvalue in absolute value.
 	dcomplex mui, krooti, krootj;
 	int i, j;
 	for (i = 0; i < eigls->nstate; i++) {//Loop again on the states to inform the user about their convergence.

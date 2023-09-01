@@ -37,10 +37,9 @@ void test_tracelog() {
 	char* args[] = {
 		"dimension=2",
 		"natom=50",
-		"model=hardsphere",
-		"alpha=0.4",
+		"model=hardsphere 0.4",
 		"shape=ball",
-		"ratio=1.0"
+		"ratio=1."
 	};
 	uint64_t seed = 1; //Medium seed.
 	
@@ -85,8 +84,7 @@ void test_dk_log_det_ms() {
 	char* args[] = {
 		"dimension=2",
 		"natom=50",
-		"model=hardsphere",
-		"alpha=0.4",
+		"model=hardsphere 0.4",
 		"shape=ball",
 		"ratio=1.0"
 	};
@@ -175,8 +173,7 @@ void test_total_cross_section() {
 	char* args[] = {
 		"dimension=2",
 		"natom=20",
-		"model=hardsphere",
-		"alpha=0.4",
+		"model=hardsphere 0.4",
 		"shape=ball",
 		"ratio=1.0"
 	};
@@ -215,8 +212,7 @@ void test_scattering_amplitude() {
 	char* args[] = {
 		"dimension=2",
 		"natom=20",
-		"model=hardsphere",
-		"alpha=0.4",
+		"model=hardsphere 0.4",
 		"shape=ball",
 		"ratio=1.0"
 	};
